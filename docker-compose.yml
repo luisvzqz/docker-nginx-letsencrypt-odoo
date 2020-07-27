@@ -45,8 +45,8 @@ services:
     ports:
       - "8069:8069"
     volumes:
-      - ./mnt/odoo:/var/lib/odoo
-      - ./mnt/extra-addons:/mnt/extra-addons
+      - "/mnt/odoo:/var/lib/odoo"
+      - "/mnt/extra-addons:/mnt/extra-addons"
     environment:
       - VIRTUAL_HOST=odoo, odoochat
       - VIRTUAL_NETWORK=nginx-proxy
