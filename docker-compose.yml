@@ -39,31 +39,18 @@ services:
 
   web:
     restart: always
-    image: odoo:11
+    image: f360/odoo:12.0
     container_name: odoo
-    depends_on:
-      - db
+
     ports:
       - "8069:8069"
     volumes:
-      - odoo-web-data:/var/lib/odoo
-      - ./config:/etc/odoo
-      - ./addons:/mnt/extra-addons
+      - ./mnt/odoo:/var/lib/odoo
+      - ./mnt/extra-addons:/mnt/extra-addons
     environment:
       - VIRTUAL_HOST=odoo, odoochat
       - VIRTUAL_NETWORK=nginx-proxy
       - VIRTUAL_PORT=8069, 8072
-      - LETSENCRYPT_HOST=samplewebsite.example.com
-      - LETSENCRYPT_EMAIL=test@example.com
-  db:
-    restart: always
-    image: postgres:9.6
-    environment:
-      - POSTGRES_PASSWORD=sample_password
-      - POSTGRES_USER=sample_user
-      - PGDATA=/var/lib/postgresql/data/pgdata
-    volumes:
-      - odoo-db-data:/var/lib/postgresql/data/pgdata
-volumes:
-  odoo-web-data:
-  odoo-db-data:
+      - LETSENCRYPT_HOST=mulaware.com
+      - LETSENCRYPT_EMAIL=hola@mulaware.com
+
